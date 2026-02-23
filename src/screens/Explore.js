@@ -1,3 +1,8 @@
+/**
+ * Explore / Project Screen - Jamiat Foundation Donation App
+ * Displays full-width campaign cards with search, category filters,
+ * progress bars, amount raised and Donate Now button.
+ */
 import React, { useState } from 'react';
 import {
     View,
