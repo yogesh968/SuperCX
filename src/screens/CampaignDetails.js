@@ -20,16 +20,16 @@ const CampaignDetails = ({ navigation }) => {
                 {/* Header Image */}
                 <View style={styles.headerImageContainer}>
                     <Image
-                        source={require('../../assets/assam_flood.png')}
+                        source={require('../../assets/assam_flood.jpg')}
                         style={styles.headerImage}
                     />
                     <SafeAreaView style={styles.headerButtons}>
                         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.iconBtn}>
-                            <Ionicons name="arrow-back" size={24} color="#00897B" />
+                            <Ionicons name="arrow-back" size={24} color="#0D6B4F" />
                         </TouchableOpacity>
                         <View style={{ flexDirection: 'row' }}>
                             <TouchableOpacity style={styles.iconBtn}>
-                                <Ionicons name="share-outline" size={24} color="#00897B" />
+                                <Ionicons name="share-outline" size={24} color="#0D6B4F" />
                             </TouchableOpacity>
                         </View>
                     </SafeAreaView>
@@ -62,17 +62,17 @@ const CampaignDetails = ({ navigation }) => {
                     {/* Stats Bar */}
                     <View style={styles.statsBar}>
                         <View style={styles.statItem}>
-                            <MaterialCommunityIcons name="food-apple-outline" size={24} color="#00897B" />
+                            <MaterialCommunityIcons name="food-apple-outline" size={24} color="#0D6B4F" />
                             <Text style={styles.statValue}>5,000+</Text>
                             <Text style={styles.statLabel}>MEALS</Text>
                         </View>
                         <View style={styles.statItem}>
-                            <MaterialCommunityIcons name="medical-bag" size={24} color="#00897B" />
+                            <MaterialCommunityIcons name="medical-bag" size={24} color="#0D6B4F" />
                             <Text style={styles.statValue}>1,200</Text>
                             <Text style={styles.statLabel}>KITS</Text>
                         </View>
                         <View style={styles.statItem}>
-                            <MaterialCommunityIcons name="home-outline" size={24} color="#00897B" />
+                            <MaterialCommunityIcons name="home-outline" size={24} color="#0D6B4F" />
                             <Text style={styles.statValue}>350</Text>
                             <Text style={styles.statLabel}>SHELTERS</Text>
                         </View>
@@ -81,7 +81,7 @@ const CampaignDetails = ({ navigation }) => {
                     {/* About Section */}
                     <View style={styles.section}>
                         <View style={styles.sectionHeader}>
-                            <Ionicons name="information-circle-outline" size={24} color="#00897B" />
+                            <Ionicons name="information-circle-outline" size={24} color="#0D6B4F" />
                             <Text style={styles.sectionTitle}>About this campaign</Text>
                         </View>
                         <Text style={styles.aboutContent}>
@@ -95,13 +95,13 @@ const CampaignDetails = ({ navigation }) => {
                     {/* Breakdown Section */}
                     <View style={styles.section}>
                         <View style={styles.sectionHeader}>
-                            <MaterialCommunityIcons name="chart-bar" size={24} color="#00897B" />
+                            <MaterialCommunityIcons name="chart-bar" size={24} color="#0D6B4F" />
                             <Text style={styles.sectionTitle}>Where your money goes</Text>
                         </View>
 
                         <View style={styles.breakdownItem}>
                             <View style={styles.breakdownIconBox}>
-                                <Ionicons name="restaurant-outline" size={20} color="#00897B" />
+                                <Ionicons name="restaurant-outline" size={20} color="#0D6B4F" />
                             </View>
                             <View style={styles.breakdownInfo}>
                                 <View style={styles.breakdownTextRow}>
@@ -116,7 +116,7 @@ const CampaignDetails = ({ navigation }) => {
 
                         <View style={styles.breakdownItem}>
                             <View style={styles.breakdownIconBox}>
-                                <Ionicons name="medkit-outline" size={20} color="#00897B" />
+                                <Ionicons name="medkit-outline" size={20} color="#0D6B4F" />
                             </View>
                             <View style={styles.breakdownInfo}>
                                 <View style={styles.breakdownTextRow}>
@@ -131,7 +131,7 @@ const CampaignDetails = ({ navigation }) => {
 
                         <View style={styles.breakdownItem}>
                             <View style={styles.breakdownIconBox}>
-                                <Ionicons name="home-outline" size={20} color="#00897B" />
+                                <Ionicons name="home-outline" size={20} color="#0D6B4F" />
                             </View>
                             <View style={styles.breakdownInfo}>
                                 <View style={styles.breakdownTextRow}>
@@ -148,7 +148,7 @@ const CampaignDetails = ({ navigation }) => {
                     {/* Live Updates */}
                     <View style={styles.section}>
                         <View style={styles.sectionHeader}>
-                            <MaterialCommunityIcons name="history" size={24} color="#00897B" />
+                            <MaterialCommunityIcons name="history" size={24} color="#0D6B4F" />
                             <Text style={styles.sectionTitle}>Live Updates</Text>
                         </View>
 
@@ -164,11 +164,11 @@ const CampaignDetails = ({ navigation }) => {
                                 </Text>
                                 <View style={styles.updateImages}>
                                     <Image
-                                        source={require('../../assets/assam_flood.png')}
+                                        source={require('../../assets/assam_flood.jpg')}
                                         style={styles.updateImg}
                                     />
                                     <Image
-                                        source={require('../../assets/community_kitchen.png')}
+                                        source={require('../../assets/community_kitchen.jpg')}
                                         style={styles.updateImg}
                                     />
                                 </View>
@@ -271,12 +271,12 @@ const styles = StyleSheet.create({
     amountRaised: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#00897B',
+        color: '#0D6B4F',
     },
     percentageText: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#00897B',
+        color: '#0D6B4F',
     },
     targetText: {
         fontSize: 14,
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
     },
     progressBarFill: {
         height: '100%',
-        backgroundColor: '#00897B',
+        backgroundColor: '#0D6B4F',
         borderRadius: 4,
     },
     donorInfo: {
@@ -351,7 +351,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     readMore: {
-        color: '#00897B',
+        color: '#0D6B4F',
         fontWeight: 'bold',
     },
     breakdownItem: {
@@ -393,7 +393,7 @@ const styles = StyleSheet.create({
     },
     breakdownFill: {
         height: '100%',
-        backgroundColor: '#00897B',
+        backgroundColor: '#0D6B4F',
         borderRadius: 3,
     },
     updateItem: {
@@ -408,14 +408,14 @@ const styles = StyleSheet.create({
         width: 10,
         height: 10,
         borderRadius: 5,
-        backgroundColor: '#00897B',
+        backgroundColor: '#0D6B4F',
         marginTop: 8,
         zIndex: 1,
     },
     timelineLine: {
         flex: 1,
         width: 2,
-        backgroundColor: '#00897B',
+        backgroundColor: '#0D6B4F',
         marginTop: -5,
     },
     updateCard: {
@@ -430,7 +430,7 @@ const styles = StyleSheet.create({
     updateTime: {
         fontSize: 12,
         fontWeight: 'bold',
-        color: '#00897B',
+        color: '#0D6B4F',
         marginBottom: 8,
     },
     updateBody: {
@@ -459,7 +459,7 @@ const styles = StyleSheet.create({
         borderTopColor: '#F0F0F0',
     },
     donateBtn: {
-        backgroundColor: '#00897B',
+        backgroundColor: '#0D6B4F',
         height: 56,
         borderRadius: 12,
         flexDirection: 'row',
