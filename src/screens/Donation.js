@@ -1,3 +1,9 @@
+/**
+ * Donation Screen - Jamiat Foundation Donation App
+ * Multi-step donation flow: Cause → Amount → Details → Payment
+ * Features: project selector, donation type, dedication, frequency,
+ * amount grid, tax benefit toggle, summary, Razorpay payment button.
+ */
 import React, { useState } from 'react';
 import {
     View,
