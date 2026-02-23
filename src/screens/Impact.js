@@ -58,7 +58,7 @@ const Impact = ({ navigation }) => {
                         <Text style={styles.cardLabel}>LIVES TOUCHED</Text>
                         <Text style={styles.statValue}>120+</Text>
                         <View style={styles.statProgress}>
-                            <View style={[styles.statFill, { width: '70%', backgroundColor: '#00897B' }]} />
+                            <View style={[styles.statFill, { width: '70%', backgroundColor: '#0D6B4F' }]} />
                         </View>
                     </View>
                     <View style={styles.statCard}>
@@ -80,7 +80,7 @@ const Impact = ({ navigation }) => {
                             Download your FY 2023-24 tax-exempt certificate now.
                         </Text>
                         <TouchableOpacity style={styles.downloadReceiptBtn}>
-                            <Feather name="download" size={16} color="#00897B" />
+                            <Feather name="download" size={16} color="#0D6B4F" />
                             <Text style={styles.downloadReceiptText}> Download 80G Receipt</Text>
                         </TouchableOpacity>
                     </View>
@@ -135,7 +135,7 @@ const Impact = ({ navigation }) => {
 
                 <View style={styles.historyItem}>
                     <View style={[styles.historyIcon, { backgroundColor: '#E0F2F1' }]}>
-                        <Ionicons name="heart-outline" size={24} color="#00897B" />
+                        <Ionicons name="heart-outline" size={24} color="#0D6B4F" />
                     </View>
                     <View style={styles.historyInfo}>
                         <Text style={styles.historyTitle}>Ramadan Food Pack</Text>
@@ -143,7 +143,7 @@ const Impact = ({ navigation }) => {
                     </View>
                     <View style={styles.historyRight}>
                         <Text style={styles.historyAmount}>₹5,000</Text>
-                        <Feather name="download" size={16} color="#00897B" style={{ marginTop: 4 }} />
+                        <Feather name="download" size={16} color="#0D6B4F" style={{ marginTop: 4 }} />
                     </View>
                 </View>
 
@@ -157,7 +157,7 @@ const Impact = ({ navigation }) => {
                     </View>
                     <View style={styles.historyRight}>
                         <Text style={styles.historyAmount}>₹2,500</Text>
-                        <Feather name="download" size={16} color="#00897B" style={{ marginTop: 4 }} />
+                        <Feather name="download" size={16} color="#0D6B4F" style={{ marginTop: 4 }} />
                     </View>
                 </View>
 
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     goldBadge: {
         position: 'absolute',
         bottom: 0,
-        backgroundColor: '#00897B',
+        backgroundColor: '#0D6B4F',
         paddingHorizontal: 10,
         paddingVertical: 4,
         borderRadius: 12,
@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
     },
     editProfileText: {
-        color: '#00897B',
+        color: '#0D6B4F',
         fontSize: 14,
         fontWeight: '600',
     },
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
     impactAmount: {
         fontSize: 32,
         fontWeight: 'bold',
-        color: '#00897B',
+        color: '#0D6B4F',
     },
     comparisonBadge: {
         backgroundColor: '#E0F2F1',
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
     comparisonText: {
         fontSize: 12,
         fontWeight: 'bold',
-        color: '#00897B',
+        color: '#0D6B4F',
     },
     statsRow: {
         flexDirection: 'row',
@@ -351,10 +351,10 @@ const styles = StyleSheet.create({
     dotText: {
         fontSize: 10,
         fontWeight: 'bold',
-        color: '#00897B',
+        color: '#0D6B4F',
     },
     taxCard: {
-        backgroundColor: '#00897B',
+        backgroundColor: '#0D6B4F',
         borderRadius: 16,
         padding: 20,
         marginBottom: 25,
@@ -382,7 +382,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start',
     },
     downloadReceiptText: {
-        color: '#00897B',
+        color: '#0D6B4F',
         fontSize: 14,
         fontWeight: 'bold',
     },
@@ -404,7 +404,7 @@ const styles = StyleSheet.create({
     },
     seeAll: {
         fontSize: 14,
-        color: '#00897B',
+        color: '#0D6B4F',
         fontWeight: '600',
     },
     timelineContainer: {
@@ -423,7 +423,7 @@ const styles = StyleSheet.create({
         width: 12,
         height: 12,
         borderRadius: 6,
-        backgroundColor: '#00897B',
+        backgroundColor: '#0D6B4F',
         marginTop: 4,
         zIndex: 1,
     },
