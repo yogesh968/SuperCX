@@ -1,3 +1,8 @@
+/**
+ * Home Screen - Jamiat Foundation Donation App
+ * Displays: Header, Quran verse banner, stats, search, filter tabs,
+ * urgent campaigns, quick donation grid, daily giving CTA, recent impact.
+ */
 import React, { useState } from 'react';
 import {
     View,
