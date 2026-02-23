@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     View,
     Text,
@@ -8,190 +8,239 @@ import {
     TouchableOpacity,
     TextInput,
     SafeAreaView,
+    Dimensions,
 } from 'react-native';
 import { Ionicons, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 
+const { width } = Dimensions.get('window');
+
+const filterTabs = ['All', 'General', 'Sadqa'];
+
+const urgentCampaigns = [
+    {
+        id: '1',
+        title: 'Assam Flood Relief 2024',
+        image: require('../../assets/assam_flood.jpg'),
+        raised: '₹15.4L',
+        goal: '₹25L',
+        badge: 'URGENT',
+        badgeColor: '#E74C3C',
+    },
+    {
+        id: '2',
+        title: 'Orphan Support Program',
+        image: require('../../assets/education.jpg'),
+        raised: '₹4.',
+        goal: '₹10L',
+        badge: 'EDUCATION',
+        badgeColor: '#3498db',
+    },
+];
+
+const quickDonations = [
+    { id: '1', label: 'Zakat', subtitle: 'OBLIGATORY', icon: 'wallet-outline', color: '#0D6B4F', bgColor: '#E8F5E9' },
+    { id: '2', label: 'Sadaqa', subtitle: 'VOLUNTARY', icon: 'heart-outline', color: '#E91E63', bgColor: '#FCE4EC' },
+    { id: '3', label: 'General', subtitle: 'YOUR CONTRIBUTION', icon: 'gift-outline', color: '#7B1FA2', bgColor: '#F3E5F5' },
+    { id: '4', label: 'Interest', subtitle: 'PURIFICATION', icon: 'cash-outline', color: '#0288D1', bgColor: '#E1F5FE' },
+];
+
+const recentImpact = [
+    {
+        id: '1',
+        tag: 'SUCCESS STORY',
+        title: 'Clean Water in Mewat',
+        description: 'Installed 5 hand pumps, providing clean water to 200 families...',
+        time: '2 hrs ago',
+        image: require('../../assets/clean_water.jpg'),
+    },
+    {
+        id: '2',
+        tag: 'SUCCESS STORY',
+        title: 'Free Eye Surgery Camp',
+        description: '150 successful cataract surgeries performed this weekend in...',
+        time: '5 days ago',
+        image: require('../../assets/community_kitchen.jpg'),
+    },
+];
+
 const Home = ({ navigation }) => {
+    const [activeFilter, setActiveFilter] = useState('All');
+
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 {/* Header */}
                 <View style={styles.header}>
-                    <View style={styles.userInfo}>
-                        <Image
-                            source={{ uri: 'https://i.pravatar.cc/150?u=ahmed' }}
-                            style={styles.avatar}
-                        />
-                        <View style={styles.greetingContainer}>
-                            <Text style={styles.greetingLabel}>Assalamu Alaikum,</Text>
-                            <Text style={styles.userName}>Ahmed Abdullah</Text>
+                    <View style={styles.headerLeft}>
+                        <View style={styles.logoContainer}>
+                            <MaterialCommunityIcons name="mosque" size={22} color="#fff" />
                         </View>
+                        <Text style={styles.headerTitle}>Jamiat Foundation</Text>
                     </View>
                     <TouchableOpacity style={styles.notificationBtn}>
-                        <Ionicons name="notifications-outline" size={24} color="#333" />
-                        <View style={styles.notificationDot} />
+                        <Ionicons name="notifications-outline" size={22} color="#fff" />
                     </TouchableOpacity>
                 </View>
 
-                {/* Impact Card */}
-                <View style={styles.impactCard}>
-                    <View style={styles.impactContent}>
-                        <Text style={styles.impactLabel}>Your Total Impact</Text>
-                        <Text style={styles.impactCount}>12 Families</Text>
-                        <Text style={styles.impactSubtext}>Supported through your generous contributions</Text>
+                {/* Quran Verse Banner */}
+                <View style={styles.quranBanner}>
+                    <Text style={styles.quranLabel}>QURAN VERSE</Text>
+                    <Text style={styles.quranText}>
+                        "And whatever you spend in good - it is for yourselves"
+                    </Text>
+                    <Text style={styles.quranRef}>Al Baqarah 2:272</Text>
+                </View>
+
+                {/* Stats Bar */}
+                <View style={styles.statsBar}>
+                    <View style={styles.statItem}>
+                        <Text style={styles.statValue}>50K+</Text>
+                        <Text style={styles.statLabel}>Lives</Text>
                     </View>
-                    <Image
-                        source={{ uri: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=2670&auto=format&fit=crop' }}
-                        style={styles.impactImage}
-                        blurRadius={2}
-                    />
+                    <View style={styles.statDivider} />
+                    <View style={styles.statItem}>
+                        <Text style={styles.statValue}>₹2.4Cr</Text>
+                        <Text style={styles.statLabel}>Raised</Text>
+                    </View>
+                    <View style={styles.statDivider} />
+                    <View style={styles.statItem}>
+                        <Text style={styles.statValue}>12K+</Text>
+                        <Text style={styles.statLabel}>Donors</Text>
+                    </View>
                 </View>
 
-                {/* Search Bar */}
-                <View style={styles.searchContainer}>
-                    <Ionicons name="search-outline" size={20} color="#999" />
-                    <TextInput
-                        placeholder="Search campaigns (e.g., Assam Relief)"
-                        placeholderTextColor="#999"
-                        style={styles.searchInput}
-                    />
-                </View>
-
-                {/* Urgent Relief Section */}
-                <View style={styles.sectionHeader}>
-                    <Text style={styles.sectionTitle}>Urgent Relief</Text>
-                    <TouchableOpacity>
-                        <Text style={styles.viewAll}>View All</Text>
-                    </TouchableOpacity>
-                </View>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.horizontalScroll}>
-                    <TouchableOpacity
-                        style={styles.reliefCard}
-                        onPress={() => navigation.navigate('CampaignDetails')}
-                    >
-                        <Image
-                            source={require('../../assets/assam_flood.png')}
-                            style={styles.reliefImage}
+                <View style={styles.contentPadding}>
+                    {/* Search Bar */}
+                    <View style={styles.searchContainer}>
+                        <Ionicons name="search-outline" size={20} color="#999" />
+                        <TextInput
+                            placeholder="Search campaigns..."
+                            placeholderTextColor="#999"
+                            style={styles.searchInput}
                         />
-                        <View style={styles.urgentBadge}>
-                            <Text style={styles.urgentText}>URGENT</Text>
-                        </View>
-                        <View style={styles.reliefInfo}>
-                            <Text style={styles.reliefTitle}>Assam Flood Relief</Text>
-                            <Text style={styles.reliefDescription} numberOfLines={2}>
-                                Providing food, clean water, and shelter to thousands affected by heavy floods.
-                            </Text>
-                            <View style={styles.progressContainer}>
-                                <View style={styles.progressBarBg}>
-                                    <View style={[styles.progressBarFill, { width: '65%' }]} />
+                    </View>
+
+                    {/* Filter Tabs */}
+                    <View style={styles.filterRow}>
+                        {filterTabs.map((tab) => (
+                            <TouchableOpacity
+                                key={tab}
+                                style={[
+                                    styles.filterTab,
+                                    activeFilter === tab && styles.filterTabActive,
+                                ]}
+                                onPress={() => setActiveFilter(tab)}
+                            >
+                                <Text
+                                    style={[
+                                        styles.filterTabText,
+                                        activeFilter === tab && styles.filterTabTextActive,
+                                    ]}
+                                >
+                                    {tab}
+                                </Text>
+                            </TouchableOpacity>
+                        ))}
+                    </View>
+
+                    {/* Urgent Campaigns */}
+                    <View style={styles.sectionHeader}>
+                        <Text style={styles.sectionTitle}>Urgent Campaigns</Text>
+                        <TouchableOpacity>
+                            <Text style={styles.viewAll}>View All</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
+                <ScrollView
+                    horizontal
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.urgentScroll}
+                >
+                    {urgentCampaigns.map((campaign) => (
+                        <TouchableOpacity
+                            key={campaign.id}
+                            style={styles.urgentCard}
+                            onPress={() => navigation.navigate('CampaignDetails')}
+                        >
+                            <Image source={campaign.image} style={styles.urgentImage} />
+                            <View style={[styles.urgentBadge, { backgroundColor: campaign.badgeColor }]}>
+                                <Text style={styles.urgentBadgeText}>{campaign.badge}</Text>
+                            </View>
+                            <View style={styles.urgentInfo}>
+                                <Text style={styles.urgentTitle}>{campaign.title}</Text>
+                                <View style={styles.urgentMetaRow}>
+                                    <Text style={styles.urgentRaised}>Raised: {campaign.raised}</Text>
+                                    <Text style={styles.urgentGoal}>Goal: {campaign.goal}</Text>
                                 </View>
-                                <TouchableOpacity style={styles.donateBtnSmall}>
-                                    <Text style={styles.donateBtnText}>Donate</Text>
+                                <TouchableOpacity
+                                    style={styles.donateNowBtn}
+                                    onPress={() => navigation.navigate('Donation')}
+                                >
+                                    <Text style={styles.donateNowText}>Donate Now</Text>
                                 </TouchableOpacity>
                             </View>
-                            <Text style={styles.progressText}>65% of target reached</Text>
-                        </View>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={styles.reliefCard}>
-                        <Image
-                            source={require('../../assets/education.png')}
-                            style={styles.reliefImage}
-                        />
-                        <View style={[styles.urgentBadge, { backgroundColor: '#3498db' }]}>
-                            <Text style={styles.urgentText}>EDUCATION</Text>
-                        </View>
-                        <View style={styles.reliefInfo}>
-                            <Text style={styles.reliefTitle}>Education for All</Text>
-                            <Text style={styles.reliefDescription} numberOfLines={2}>
-                                Sponsoring school fees and books for underprivileged children.
-                            </Text>
-                            <View style={styles.progressContainer}>
-                                <View style={styles.progressBarBg}>
-                                    <View style={[styles.progressBarFill, { width: '40%' }]} />
-                                </View>
-                                <TouchableOpacity style={styles.donateBtnSmall}>
-                                    <Text style={styles.donateBtnText}>Donate</Text>
-                                </TouchableOpacity>
-                            </View>
-                            <Text style={styles.progressText}>40% of target reached</Text>
-                        </View>
-                    </TouchableOpacity>
+                        </TouchableOpacity>
+                    ))}
                 </ScrollView>
 
-                {/* Quick Donation Section */}
-                <View style={styles.sectionHeader}>
-                    <Text style={styles.sectionTitle}>Quick Donation</Text>
-                </View>
-                <View style={styles.quickGrid}>
-                    <TouchableOpacity style={styles.quickItem} onPress={() => navigation.navigate('Donation')}>
-                        <View style={[styles.quickIconContainer, { backgroundColor: '#E8F5E9' }]}>
-                            <Ionicons name="wallet-outline" size={24} color="#00897B" />
-                        </View>
-                        <Text style={styles.quickLabel}>Zakat</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.quickItem} onPress={() => navigation.navigate('Donation')}>
-                        <View style={[styles.quickIconContainer, { backgroundColor: '#E0F2F1' }]}>
-                            <Ionicons name="heart-outline" size={24} color="#00796B" />
-                        </View>
-                        <Text style={styles.quickLabel}>Sadaqa</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.quickItem} onPress={() => navigation.navigate('Donation')}>
-                        <View style={[styles.quickIconContainer, { backgroundColor: '#F3E5F5' }]}>
-                            <Ionicons name="gift-outline" size={24} color="#7B1FA2" />
-                        </View>
-                        <Text style={styles.quickLabel}>General</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.quickItem} onPress={() => navigation.navigate('Donation')}>
-                        <View style={[styles.quickIconContainer, { backgroundColor: '#E1F5FE' }]}>
-                            <Ionicons name="star-outline" size={24} color="#0288D1" />
-                        </View>
-                        <Text style={styles.quickLabel}>Relief</Text>
-                    </TouchableOpacity>
-                </View>
+                <View style={styles.contentPadding}>
+                    {/* Quick Donation */}
+                    <Text style={styles.sectionTitleStandalone}>Quick Donation</Text>
+                    <View style={styles.quickGrid}>
+                        {quickDonations.map((item) => (
+                            <TouchableOpacity
+                                key={item.id}
+                                style={styles.quickItem}
+                                onPress={() => navigation.navigate('Donation')}
+                            >
+                                <View style={[styles.quickIconWrap, { backgroundColor: item.bgColor }]}>
+                                    <Ionicons name={item.icon} size={24} color={item.color} />
+                                </View>
+                                <Text style={styles.quickLabel}>{item.label}</Text>
+                                <Text style={styles.quickSublabel}>{item.subtitle}</Text>
+                            </TouchableOpacity>
+                        ))}
+                    </View>
 
-                {/* Recent Impact Section */}
-                <View style={styles.sectionHeader}>
-                    <Text style={styles.sectionTitle}>Recent Impact</Text>
-                    <TouchableOpacity>
-                        <Text style={styles.viewAll}>See Stories</Text>
-                    </TouchableOpacity>
-                </View>
-                <TouchableOpacity style={styles.storyCard}>
-                    <Image
-                        source={require('../../assets/community_kitchen.png')}
-                        style={styles.storyImage}
-                    />
-                    <View style={styles.storyInfo}>
-                        <Text style={styles.storyTitle}>New community kitchen opened in Bihar</Text>
-                        <Text style={styles.storyDescription}>
-                            Serving 200+ hot meals daily to daily wage earners.
-                        </Text>
-                        <TouchableOpacity style={styles.readMoreBtn}>
-                            <Text style={styles.readMoreText}>READ FULL STORY </Text>
-                            <Feather name="arrow-right" size={14} color="#00897B" />
+                    {/* Daily Giving CTA */}
+                    <View style={styles.dailyGivingBanner}>
+                        <View>
+                            <Text style={styles.dailyGivingTitle}>Start Your Daily Giving</Text>
+                            <Text style={styles.dailyGivingSubtitle}>Just ₹1/Day</Text>
+                        </View>
+                        <TouchableOpacity style={styles.setupBtn}>
+                            <Text style={styles.setupBtnText}>Set Up Now</Text>
                         </TouchableOpacity>
                     </View>
-                </TouchableOpacity>
 
-                <TouchableOpacity style={styles.storyCard}>
-                    <Image
-                        source={require('../../assets/clean_water.png')}
-                        style={styles.storyImage}
-                    />
-                    <View style={styles.storyInfo}>
-                        <Text style={styles.storyTitle}>Clean water project completed in Yemen</Text>
-                        <Text style={styles.storyDescription}>
-                            Safe drinking water accessible to over 1,500 villagers.
-                        </Text>
-                        <TouchableOpacity style={styles.readMoreBtn}>
-                            <Text style={styles.readMoreText}>READ FULL STORY </Text>
-                            <Feather name="arrow-right" size={14} color="#00897B" />
+                    {/* Recent Impact */}
+                    <View style={styles.sectionHeader}>
+                        <Text style={styles.sectionTitle}>Recent Impact</Text>
+                        <TouchableOpacity>
+                            <Text style={styles.viewAll}>Read More</Text>
                         </TouchableOpacity>
                     </View>
-                </TouchableOpacity>
 
-                <View style={{ height: 100 }} />
+                    {recentImpact.map((story) => (
+                        <TouchableOpacity key={story.id} style={styles.impactCard}>
+                            <Image source={story.image} style={styles.impactImage} />
+                            <View style={styles.impactInfo}>
+                                <Text style={styles.impactTag}>{story.tag}</Text>
+                                <Text style={styles.impactTitle}>{story.title}</Text>
+                                <Text style={styles.impactDesc} numberOfLines={2}>
+                                    {story.description}
+                                </Text>
+                                <View style={styles.impactTimeRow}>
+                                    <Ionicons name="time-outline" size={12} color="#999" />
+                                    <Text style={styles.impactTime}>{story.time}</Text>
+                                </View>
+                            </View>
+                        </TouchableOpacity>
+                    ))}
+
+                    <View style={{ height: 100 }} />
+                </View>
             </ScrollView>
         </SafeAreaView>
     );
@@ -202,109 +251,122 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F8F9FA',
     },
-    scrollContent: {
-        padding: 20,
-    },
+    // Header
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 20,
+        paddingHorizontal: 20,
+        paddingTop: 10,
+        paddingBottom: 12,
+        backgroundColor: '#0D6B4F',
     },
-    userInfo: {
+    headerLeft: {
         flexDirection: 'row',
         alignItems: 'center',
     },
-    avatar: {
-        width: 48,
-        height: 48,
-        borderRadius: 24,
-        marginRight: 12,
-    },
-    greetingLabel: {
-        fontSize: 14,
-        color: '#666',
-    },
-    userName: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#111',
-    },
-    notificationBtn: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
-        backgroundColor: '#fff',
+    logoContainer: {
+        width: 36,
+        height: 36,
+        borderRadius: 10,
+        backgroundColor: 'rgba(255,255,255,0.2)',
         justifyContent: 'center',
         alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
-        shadowRadius: 5,
-        elevation: 2,
+        marginRight: 10,
     },
-    notificationDot: {
-        position: 'absolute',
-        top: 10,
-        right: 12,
-        width: 8,
-        height: 8,
-        borderRadius: 4,
-        backgroundColor: '#E74C3C',
-        borderWidth: 1.5,
-        borderColor: '#fff',
-    },
-    impactCard: {
-        height: 140,
-        backgroundColor: '#00897B',
-        borderRadius: 16,
-        padding: 20,
-        flexDirection: 'row',
-        alignItems: 'center',
-        overflow: 'hidden',
-        marginBottom: 20,
-    },
-    impactContent: {
-        flex: 2,
-        zIndex: 1,
-    },
-    impactLabel: {
-        color: 'rgba(255,255,255,0.8)',
-        fontSize: 14,
-        marginBottom: 4,
-    },
-    impactCount: {
-        color: '#fff',
-        fontSize: 28,
+    headerTitle: {
+        fontSize: 18,
         fontWeight: 'bold',
-        marginBottom: 4,
+        color: '#fff',
     },
-    impactSubtext: {
-        color: 'rgba(255,255,255,0.7)',
+    notificationBtn: {
+        width: 38,
+        height: 38,
+        borderRadius: 19,
+        backgroundColor: 'rgba(255,255,255,0.15)',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    // Quran Banner
+    quranBanner: {
+        backgroundColor: '#0D6B4F',
+        paddingHorizontal: 20,
+        paddingBottom: 25,
+        paddingTop: 5,
+        borderBottomLeftRadius: 24,
+        borderBottomRightRadius: 24,
+    },
+    quranLabel: {
+        fontSize: 10,
+        fontWeight: '700',
+        color: 'rgba(255,255,255,0.5)',
+        letterSpacing: 1.5,
+        marginBottom: 6,
+    },
+    quranText: {
+        fontSize: 16,
+        color: '#fff',
+        fontStyle: 'italic',
+        lineHeight: 24,
+        marginBottom: 6,
+    },
+    quranRef: {
         fontSize: 12,
+        color: 'rgba(255,255,255,0.5)',
+        textAlign: 'right',
     },
-    impactImage: {
-        position: 'absolute',
-        right: -20,
-        bottom: -40,
-        width: 180,
-        height: 180,
-        opacity: 0.3,
-        transform: [{ rotate: '-10deg' }],
+    // Stats Bar
+    statsBar: {
+        flexDirection: 'row',
+        backgroundColor: '#fff',
+        marginHorizontal: 20,
+        marginTop: -14,
+        borderRadius: 14,
+        paddingVertical: 14,
+        paddingHorizontal: 10,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.08,
+        shadowRadius: 10,
+        elevation: 5,
     },
+    statItem: {
+        alignItems: 'center',
+        flex: 1,
+    },
+    statValue: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#0D6B4F',
+    },
+    statLabel: {
+        fontSize: 11,
+        color: '#999',
+        marginTop: 2,
+    },
+    statDivider: {
+        width: 1,
+        height: 30,
+        backgroundColor: '#E8E8E8',
+    },
+    // Content
+    contentPadding: {
+        paddingHorizontal: 20,
+    },
+    // Search
     searchContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#fff',
         borderRadius: 12,
         paddingHorizontal: 15,
-        height: 50,
-        marginBottom: 25,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
-        shadowRadius: 5,
-        elevation: 2,
+        height: 48,
+        marginTop: 20,
+        marginBottom: 16,
+        borderWidth: 1,
+        borderColor: '#F0F0F0',
     },
     searchInput: {
         flex: 1,
@@ -312,125 +374,149 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#333',
     },
+    // Filter Tabs
+    filterRow: {
+        flexDirection: 'row',
+        marginBottom: 20,
+    },
+    filterTab: {
+        paddingHorizontal: 20,
+        paddingVertical: 8,
+        borderRadius: 20,
+        backgroundColor: '#fff',
+        marginRight: 10,
+        borderWidth: 1,
+        borderColor: '#E8E8E8',
+    },
+    filterTabActive: {
+        backgroundColor: '#0D6B4F',
+        borderColor: '#0D6B4F',
+    },
+    filterTabText: {
+        fontSize: 13,
+        fontWeight: '600',
+        color: '#666',
+    },
+    filterTabTextActive: {
+        color: '#fff',
+    },
+    // Section Header
     sectionHeader: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 15,
+        marginBottom: 14,
     },
     sectionTitle: {
         fontSize: 18,
         fontWeight: 'bold',
         color: '#111',
     },
+    sectionTitleStandalone: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#111',
+        marginBottom: 14,
+        marginTop: 6,
+    },
     viewAll: {
-        fontSize: 14,
-        color: '#00897B',
+        fontSize: 13,
+        color: '#0D6B4F',
         fontWeight: '600',
     },
-    horizontalScroll: {
-        marginBottom: 25,
-        marginHorizontal: -20,
+    // Urgent Campaigns
+    urgentScroll: {
         paddingLeft: 20,
+        paddingRight: 10,
+        paddingBottom: 5,
+        marginBottom: 10,
     },
-    reliefCard: {
-        width: 280,
+    urgentCard: {
+        width: width * 0.55,
         backgroundColor: '#fff',
         borderRadius: 16,
-        marginRight: 15,
+        marginRight: 14,
         overflow: 'hidden',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
-        shadowRadius: 5,
-        elevation: 2,
+        shadowOpacity: 0.06,
+        shadowRadius: 6,
+        elevation: 3,
     },
-    reliefImage: {
+    urgentImage: {
         width: '100%',
-        height: 150,
+        height: 120,
+        borderTopLeftRadius: 16,
+        borderTopRightRadius: 16,
     },
     urgentBadge: {
         position: 'absolute',
-        top: 12,
-        left: 12,
-        backgroundColor: '#E74C3C',
+        top: 10,
+        left: 10,
         paddingHorizontal: 8,
-        paddingVertical: 4,
+        paddingVertical: 3,
         borderRadius: 4,
     },
-    urgentText: {
+    urgentBadgeText: {
         color: '#fff',
-        fontSize: 10,
+        fontSize: 9,
         fontWeight: '800',
+        letterSpacing: 0.5,
     },
-    reliefInfo: {
-        padding: 15,
+    urgentInfo: {
+        padding: 12,
     },
-    reliefTitle: {
-        fontSize: 16,
+    urgentTitle: {
+        fontSize: 14,
         fontWeight: 'bold',
         color: '#111',
-        marginBottom: 5,
-    },
-    reliefDescription: {
-        fontSize: 13,
-        color: '#666',
-        lineHeight: 18,
-        marginBottom: 12,
-    },
-    progressContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
         marginBottom: 6,
     },
-    progressBarBg: {
-        flex: 1,
-        height: 6,
-        backgroundColor: '#F0F0F0',
-        borderRadius: 3,
-        marginRight: 10,
+    urgentMetaRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 10,
     },
-    progressBarFill: {
-        height: '100%',
-        backgroundColor: '#00897B',
-        borderRadius: 3,
+    urgentRaised: {
+        fontSize: 11,
+        color: '#666',
     },
-    donateBtnSmall: {
-        backgroundColor: '#00897B',
-        paddingHorizontal: 12,
-        paddingVertical: 6,
-        borderRadius: 6,
-    },
-    donateBtnText: {
-        color: '#fff',
-        fontSize: 12,
-        fontWeight: 'bold',
-    },
-    progressText: {
+    urgentGoal: {
         fontSize: 11,
         color: '#999',
     },
+    donateNowBtn: {
+        backgroundColor: '#0D6B4F',
+        borderRadius: 8,
+        paddingVertical: 8,
+        alignItems: 'center',
+    },
+    donateNowText: {
+        color: '#fff',
+        fontSize: 13,
+        fontWeight: 'bold',
+    },
+    // Quick Donation
     quickGrid: {
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-        marginBottom: 25,
+        marginBottom: 20,
     },
     quickItem: {
         width: '47%',
         backgroundColor: '#fff',
         borderRadius: 16,
-        padding: 20,
+        padding: 18,
         alignItems: 'center',
-        marginBottom: 15,
+        marginBottom: 14,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
-        shadowRadius: 5,
+        shadowOpacity: 0.04,
+        shadowRadius: 6,
         elevation: 2,
     },
-    quickIconContainer: {
+    quickIconWrap: {
         width: 50,
         height: 50,
         borderRadius: 25,
@@ -440,49 +526,96 @@ const styles = StyleSheet.create({
     },
     quickLabel: {
         fontSize: 14,
-        fontWeight: '600',
+        fontWeight: '700',
         color: '#333',
     },
-    storyCard: {
-        backgroundColor: '#fff',
+    quickSublabel: {
+        fontSize: 9,
+        fontWeight: '600',
+        color: '#AAA',
+        letterSpacing: 0.8,
+        marginTop: 2,
+    },
+    // Daily Giving Banner
+    dailyGivingBanner: {
+        backgroundColor: '#0D6B4F',
         borderRadius: 16,
-        marginBottom: 15,
+        padding: 20,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 24,
+    },
+    dailyGivingTitle: {
+        fontSize: 17,
+        fontWeight: 'bold',
+        color: '#fff',
+    },
+    dailyGivingSubtitle: {
+        fontSize: 13,
+        color: 'rgba(255,255,255,0.7)',
+        marginTop: 2,
+    },
+    setupBtn: {
+        backgroundColor: '#fff',
+        borderRadius: 20,
+        paddingHorizontal: 18,
+        paddingVertical: 9,
+    },
+    setupBtnText: {
+        fontSize: 13,
+        fontWeight: 'bold',
+        color: '#0D6B4F',
+    },
+    // Recent Impact
+    impactCard: {
+        backgroundColor: '#fff',
+        borderRadius: 14,
+        marginBottom: 14,
         flexDirection: 'row',
         overflow: 'hidden',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
-        shadowRadius: 5,
+        shadowOpacity: 0.04,
+        shadowRadius: 6,
         elevation: 2,
     },
-    storyImage: {
+    impactImage: {
         width: 100,
-        height: '100%',
+        height: 110,
     },
-    storyInfo: {
+    impactInfo: {
         flex: 1,
-        padding: 15,
+        padding: 12,
+        justifyContent: 'center',
     },
-    storyTitle: {
-        fontSize: 15,
+    impactTag: {
+        fontSize: 9,
+        fontWeight: '800',
+        color: '#E74C3C',
+        letterSpacing: 0.8,
+        marginBottom: 4,
+    },
+    impactTitle: {
+        fontSize: 14,
         fontWeight: 'bold',
         color: '#111',
         marginBottom: 4,
     },
-    storyDescription: {
+    impactDesc: {
         fontSize: 12,
-        color: '#666',
-        lineHeight: 16,
-        marginBottom: 8,
+        color: '#888',
+        lineHeight: 17,
+        marginBottom: 6,
     },
-    readMoreBtn: {
+    impactTimeRow: {
         flexDirection: 'row',
         alignItems: 'center',
     },
-    readMoreText: {
-        fontSize: 12,
-        color: '#00897B',
-        fontWeight: 'bold',
+    impactTime: {
+        fontSize: 11,
+        color: '#999',
+        marginLeft: 4,
     },
 });
 
