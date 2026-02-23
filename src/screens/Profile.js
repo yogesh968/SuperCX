@@ -16,13 +16,13 @@ const donationHistory = [
     { id: '2', title: 'Education for All', date: 'JAN 28, 2024', amount: '₹5,000', type: 'Sadaqa', icon: 'school-outline', color: '#3498db', status: 'Completed' },
     { id: '3', title: 'Community Kitchen Bihar', date: 'JAN 10, 2024', amount: '₹3,000', type: 'Lillah', icon: 'restaurant-outline', color: '#F39C12', status: 'Completed' },
     { id: '4', title: 'Clean Water Project', date: 'DEC 20, 2023', amount: '₹7,500', type: 'Zakat', icon: 'water-outline', color: '#9B59B6', status: 'Completed' },
-    { id: '5', title: 'Orphan Sponsorship', date: 'DEC 05, 2023', amount: '₹15,000', type: 'Sadaqa', icon: 'people-outline', color: '#00897B', status: 'Completed' },
+    { id: '5', title: 'Orphan Sponsorship', date: 'DEC 05, 2023', amount: '₹15,000', type: 'Sadaqa', icon: 'people-outline', color: '#0D6B4F', status: 'Completed' },
     { id: '6', title: 'Eid Food Drive', date: 'NOV 15, 2023', amount: '₹2,000', type: 'Lillah', icon: 'gift-outline', color: '#E67E22', status: 'Completed' },
 ];
 
 const badges = [
     { id: '1', title: 'First Donation', icon: 'star', color: '#FFD700', earned: true },
-    { id: '2', title: 'Monthly Donor', icon: 'refresh', color: '#00897B', earned: true },
+    { id: '2', title: 'Monthly Donor', icon: 'refresh', color: '#0D6B4F', earned: true },
     { id: '3', title: 'Gold Supporter', icon: 'trophy', color: '#F39C12', earned: true },
     { id: '4', title: '10 Campaigns', icon: 'heart', color: '#E74C3C', earned: true },
     { id: '5', title: 'Referral Hero', icon: 'people', color: '#3498db', earned: false },
@@ -79,7 +79,7 @@ const Profile = ({ navigation }) => {
                         <Text style={styles.quickStatValue}>₹50,000</Text>
                         <Text style={styles.quickStatLabel}>Total Donated</Text>
                         <View style={styles.quickStatIconBg}>
-                            <Ionicons name="wallet-outline" size={18} color="#00897B" />
+                            <Ionicons name="wallet-outline" size={18} color="#0D6B4F" />
                         </View>
                     </View>
                     <View style={styles.quickStatCard}>
@@ -136,7 +136,7 @@ const Profile = ({ navigation }) => {
                         </View>
                     </View>
                     <TouchableOpacity style={styles.downloadCertBtn}>
-                        <Feather name="download" size={16} color="#00897B" />
+                        <Feather name="download" size={16} color="#0D6B4F" />
                         <Text style={styles.downloadCertText}>Download 80G Certificate</Text>
                     </TouchableOpacity>
                 </View>
@@ -206,7 +206,7 @@ const Profile = ({ navigation }) => {
                         <View style={styles.historyRight}>
                             <Text style={styles.historyAmount}>{item.amount}</Text>
                             <View style={styles.statusBadge}>
-                                <Ionicons name="checkmark-circle" size={12} color="#00897B" />
+                                <Ionicons name="checkmark-circle" size={12} color="#0D6B4F" />
                                 <Text style={styles.statusText}>{item.status}</Text>
                             </View>
                         </View>
@@ -220,7 +220,7 @@ const Profile = ({ navigation }) => {
                 <View style={styles.preferencesCard}>
                     <View style={styles.prefItem}>
                         <View style={styles.prefLeft}>
-                            <Ionicons name="notifications-outline" size={22} color="#00897B" />
+                            <Ionicons name="notifications-outline" size={22} color="#0D6B4F" />
                             <View style={styles.prefTextContainer}>
                                 <Text style={styles.prefTitle}>Push Notifications</Text>
                                 <Text style={styles.prefSubtitle}>Campaign updates & reminders</Text>
@@ -230,7 +230,7 @@ const Profile = ({ navigation }) => {
                             value={notificationsEnabled}
                             onValueChange={setNotificationsEnabled}
                             trackColor={{ false: '#E0E0E0', true: '#B2DFDB' }}
-                            thumbColor={notificationsEnabled ? '#00897B' : '#f4f3f4'}
+                            thumbColor={notificationsEnabled ? '#0D6B4F' : '#f4f3f4'}
                         />
                     </View>
                     <View style={styles.prefDivider} />
@@ -246,7 +246,7 @@ const Profile = ({ navigation }) => {
                             value={monthlyReminder}
                             onValueChange={setMonthlyReminder}
                             trackColor={{ false: '#E0E0E0', true: '#B2DFDB' }}
-                            thumbColor={monthlyReminder ? '#00897B' : '#f4f3f4'}
+                            thumbColor={monthlyReminder ? '#0D6B4F' : '#f4f3f4'}
                         />
                     </View>
                     <View style={styles.prefDivider} />
@@ -262,7 +262,7 @@ const Profile = ({ navigation }) => {
                             value={darkMode}
                             onValueChange={setDarkMode}
                             trackColor={{ false: '#E0E0E0', true: '#B2DFDB' }}
-                            thumbColor={darkMode ? '#00897B' : '#f4f3f4'}
+                            thumbColor={darkMode ? '#0D6B4F' : '#f4f3f4'}
                         />
                     </View>
                 </View>
@@ -272,7 +272,7 @@ const Profile = ({ navigation }) => {
                     <TouchableOpacity style={styles.menuItem}>
                         <View style={styles.menuLeft}>
                             <View style={[styles.menuIconBox, { backgroundColor: '#E0F2F1' }]}>
-                                <Ionicons name="person-outline" size={20} color="#00897B" />
+                                <Ionicons name="person-outline" size={20} color="#0D6B4F" />
                             </View>
                             <Text style={styles.menuText}>Edit Profile</Text>
                         </View>
@@ -322,7 +322,7 @@ const Profile = ({ navigation }) => {
                     <TouchableOpacity style={styles.menuItem}>
                         <View style={styles.menuLeft}>
                             <View style={[styles.menuIconBox, { backgroundColor: '#E0F2F1' }]}>
-                                <Ionicons name="share-social-outline" size={20} color="#00897B" />
+                                <Ionicons name="share-social-outline" size={20} color="#0D6B4F" />
                             </View>
                             <Text style={styles.menuText}>Invite Friends</Text>
                         </View>
@@ -404,7 +404,7 @@ const styles = StyleSheet.create({
     },
     profileCardBg: {
         height: 80,
-        backgroundColor: '#00897B',
+        backgroundColor: '#0D6B4F',
     },
     profileContent: {
         alignItems: 'center',
@@ -440,7 +440,7 @@ const styles = StyleSheet.create({
         width: 28,
         height: 28,
         borderRadius: 14,
-        backgroundColor: '#00897B',
+        backgroundColor: '#0D6B4F',
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 2,
@@ -529,7 +529,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     zakatCard: {
-        backgroundColor: '#00897B',
+        backgroundColor: '#0D6B4F',
         borderRadius: 20,
         padding: 20,
         marginTop: 8,
@@ -590,7 +590,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     downloadCertText: {
-        color: '#00897B',
+        color: '#0D6B4F',
         fontSize: 14,
         fontWeight: 'bold',
         marginLeft: 8,
@@ -608,7 +608,7 @@ const styles = StyleSheet.create({
     },
     viewAll: {
         fontSize: 14,
-        color: '#00897B',
+        color: '#0D6B4F',
         fontWeight: '600',
     },
     badgesScroll: {
@@ -702,7 +702,7 @@ const styles = StyleSheet.create({
     historyTypeText: {
         fontSize: 9,
         fontWeight: 'bold',
-        color: '#00897B',
+        color: '#0D6B4F',
     },
     historyRight: {
         alignItems: 'flex-end',
@@ -719,7 +719,7 @@ const styles = StyleSheet.create({
     },
     statusText: {
         fontSize: 10,
-        color: '#00897B',
+        color: '#0D6B4F',
         fontWeight: '600',
         marginLeft: 3,
     },
